@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta name="description" content="Quick Start系统可用性好的软件架构：  高性能 （延迟低） 高可用   易拓展  (迭代新功能成本低)  高可用：  平均故障间隔 MTBF（Mean Time Between Failure）：表示两次故障的间隔时间，也就是系统「正常运行」的平均时间，这个时间越长，说明系统稳定性越高  故障恢复时间 MTTR（Mean Time To Repair）：表示系统发生故障后「恢复的时间」，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异地多活">
+<meta property="og:url" content="http://example.com/2021/10/22/%E5%BC%82%E5%9C%B0%E5%A4%9A%E6%B4%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Quick Start系统可用性好的软件架构：  高性能 （延迟低） 高可用   易拓展  (迭代新功能成本低)  高可用：  平均故障间隔 MTBF（Mean Time Between Failure）：表示两次故障的间隔时间，也就是系统「正常运行」的平均时间，这个时间越长，说明系统稳定性越高  故障恢复时间 MTTR（Mean Time To Repair）：表示系统发生故障后「恢复的时间」，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/58756074/138387511-ffcaf080-f779-41f1-851d-394b2c6e19be.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/58756074/138390185-bf5c3486-3703-4802-b3b2-37deb48cc3da.jpg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/58756074/138391560-2d8b5f9b-c729-455f-bea5-f224df6e7dd5.jpg">
+<meta property="article:published_time" content="2021-10-22T03:09:40.555Z">
+<meta property="article:modified_time" content="2021-10-22T04:06:08.946Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="分布式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/58756074/138387511-ffcaf080-f779-41f1-851d-394b2c6e19be.jpg">
+  
+  <title>异地多活 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Lee</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="异地多活">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-22 11:09" pubdate>
+        October 22, 2021 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">异地多活</h1>
+            
+            <div class="markdown-body">
+              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="系统可用性"><a href="#系统可用性" class="headerlink" title="系统可用性"></a>系统可用性</h3><p>好的软件架构：</p>
+<ol>
+<li>高性能 （延迟低）</li>
+<li>高可用  </li>
+<li>易拓展  (迭代新功能成本低)</li>
+</ol>
+<p>高可用：</p>
+<ul>
+<li><p><strong>平均故障间隔 MTBF（Mean Time Between Failure）</strong>：表示两次故障的间隔时间，也就是系统「正常运行」的平均时间，这个时间越长，说明系统稳定性越高</p>
+</li>
+<li><p><strong>故障恢复时间 MTTR（Mean Time To Repair）</strong>：表示系统发生故障后「恢复的时间」，这个值越小，故障对用户的影响越小</p>
+</li>
+</ul>
+<p><strong>可用性（Availability）= MTBF / (MTBF + MTTR) * 100%</strong></p>
+<p><img src="https://user-images.githubusercontent.com/58756074/138387511-ffcaf080-f779-41f1-851d-394b2c6e19be.jpg" srcset="/img/loading.gif" lazyload alt="N个9"></p>
+<h3 id="单机架构"><a href="#单机架构" class="headerlink" title="单机架构"></a>单机架构</h3><p>应用直接读写数据库，但需要注意的是，这里的数据库是「单机」部署的，所以它有一个致命的缺点：一旦遭遇意外，例如磁盘损坏、操作系统异常、误删数据，那这意味着所有数据就全部「丢失」了，这个损失是巨大的。</p>
+<p>解决方法备份的问题：</p>
+<ol>
+<li><strong>恢复需要时间</strong>：业务需先停机，再恢复数据，停机时间取决于恢复的速度，恢复期间服务「不可用」</li>
+<li><strong>数据不完整</strong>：因为是定期备份，数据肯定不是「最新」的，数据完整程度取决于备份的周期<br>很明显，你的数据库越大，意味故障恢复时间越久。那按照前面我们提到的「高可用」标准，这个方案可能连 1 个 9 都达不到，远远无法满足我们对可用性的要求。</li>
+</ol>
+<h3 id="主从副本"><a href="#主从副本" class="headerlink" title="主从副本"></a>主从副本</h3><p>你可以在另一台机器上，再部署一个数据库实例，让这个新实例成为原实例的「副本」，让两者保持「实时同步」</p>
+<p>master-slave优点：</p>
+<ul>
+<li><strong>数据完整性高</strong>：主从副本实时同步，数据「差异」很小</li>
+<li><strong>抗故障能力提升</strong>：主库有任何异常，从库可随时「切换」为主库，继续提供服务</li>
+<li><strong>读性能提升</strong>：业务应用可直接读从库，分担主库「压力」读压力</li>
+</ul>
+<p>这个方案不错，不仅大大提高了数据库的可用性，还提升了系统的读性能，同样的思路，你的「业务应用」也可以在其它机器部署一份，避免单点。因为业务应用通常是「无状态」的（不像数据库那样存储数据），所以直接部署即可，非常简单。</p>
+<p>因为业务应用部署了多个，所以你现在还需要部署一个「接入层」，来做请求的「负载均衡」（一般会使用 nginx 或 LVS），这样当一台机器宕机后，另一台机器也可以「接管」所有流量，持续提供服务。</p>
+<p><strong>冗余</strong>是设计核心</p>
+<h3 id="风险不可控"><a href="#风险不可控" class="headerlink" title="风险不可控"></a>风险不可控</h3><p>而一个机房有很多服务器，这些服务器通常会分布在一个个「机柜」上，如果你使用的这些机器，刚好在一个机柜，还是存在风险。就算不在同一机柜也在同一个环境下：机房</p>
+<p>例子：</p>
+<ul>
+<li>杭州市某地光纤被挖断，近 3 亿用户长达 5 小时无法访问支付宝</li>
+<li>B 站部分服务器机房发生故障，造成整站持续 3 个小时无法访问（印象深刻）</li>
+<li>富途证券服务器机房发生电力闪断故障，造成用户 2 个小时无法登陆、交易</li>
+</ul>
+<p>对付机房基本的问题还是冗余</p>
+<h3 id="同城灾备"><a href="#同城灾备" class="headerlink" title="同城灾备"></a>同城灾备</h3><p>机房备份 （冷备：B 机房只做备份，不提供实时服务，它是冷的，只会在 A 机房故障时才会启用）但备份的问题依旧和之前描述的一样：数据不完整、恢复数据期间业务不可用，整个系统的可用性还是无法得到保证</p>
+<p>主从副本：</p>
+<ol>
+<li>B 机房所有从库提升为主库</li>
+<li>在 B 机房部署应用，启动服务</li>
+<li>部署接入层，配置转发规则</li>
+<li>DNS 指向 B 机房，接入流量，业务恢复</li>
+</ol>
+<p>因此，要想缩短业务恢复的时间，你必须把这些工作在 B 机房「提前」做好，也就是说，你需要在 B 机房提前部署好接入层、业务应用，等待随时切换。架构就变成了这样：</p>
+<p>这样只有两件事： B 机房所有从库提升为主库 和 DNS 指向 B 机房，接入流量，业务恢复<br><strong>热备份</strong>：随时可切换<br><img src="https://user-images.githubusercontent.com/58756074/138390185-bf5c3486-3703-4802-b3b2-37deb48cc3da.jpg" srcset="/img/loading.gif" lazyload alt="热备份"></p>
+<h3 id="同城双活"><a href="#同城双活" class="headerlink" title="同城双活"></a>同城双活</h3><p>让B机房也接入流量通过DNS，单纯在故障时使用有点浪费，平时还可以分流<br>从库readonly，<strong>读写分离</strong>即两个机房的「读」流量，可以读任意机房的存储，但「写」流量，只允许写 A 机房，因为主库在 A 机房。</p>
+<p>两个机房部署在「同城」，物理距离比较近，而且两个机房用「专线」网络连接，虽然跨机房访问的延迟，比单个机房内要大一些，但整体的延迟还是可以接受的。</p>
+<h3 id="两地三中心"><a href="#两地三中心" class="headerlink" title="两地三中心"></a>两地三中心</h3><p>两个机房还是在同一个城市，接着冗余，建议两个机房的距离要在 1000 公里以上，这样才能应对城市级别的灾难。<br><strong>两地是指 2 个城市，三中心是指有 3 个机房，其中 2 个机房在同一个城市，并且同时提供服务，第 3 个机房部署在异地，只做数据灾备</strong></p>
+<h3 id="伪异地双活"><a href="#伪异地双活" class="headerlink" title="伪异地双活"></a>伪异地双活</h3><p>跨城专线带来的网络延迟，因为两个机房距离较远，受到物理距离的限制，现在，两地之间的网络延迟就变成了「不可忽视」的因素了。</p>
+<h3 id="真正的异地双活"><a href="#真正的异地双活" class="headerlink" title="真正的异地双活"></a>真正的异地双活</h3><p>两个机房的存储必须都是「主库」，而且两个机房的数据还要「互相同步」数据，即客户端无论写哪一个机房，都能把这条数据同步到另一个机房。<br>因为只有两个机房都拥有「全量数据」，才能支持任意切换机房，持续提供服务。</p>
+<p>MySQL 本身就提供了双主架构，它支持双向复制数据，但平时用的并不多。而且 Redis、MongoDB 等数据库并没有提供这个功能，所以，你必须开发对应的「数据同步中间件」来实现双向同步的功能。</p>
+<p>这样可能会带来数据冲突，数据没有在对方机房里同步时</p>
+<p>一种方法：数据同步中间件要有自动「合并」数据、解决「冲突」的能力如依赖时钟，但这种方案需要两个机房的「时钟」严格保持一致才行，否则很容易出现问题</p>
+<h3 id="如何实施异地双活"><a href="#如何实施异地双活" class="headerlink" title="如何实施异地双活"></a>如何实施异地双活</h3><p><strong>在最上层接入流量时，就不要让冲突的情况发生</strong> 避免跨机房 路由规则有三类</p>
+<ol>
+<li><p>按业务类型分片<br>假设我们一共有 4 个应用，北京和上海机房都部署这些应用。但应用 1、2 只在北京机房接入流量，在上海机房只是热备。应用 3、4 只在上海机房接入流量，在北京机房是热备。</p>
+</li>
+<li><p>直接哈希分片<br>这种方案就是，最上层的路由层，会根据用户 ID 计算「哈希」取模，然后从路由表中找到对应的机房，之后把请求转发到指定机房内。</p>
+</li>
+<li><p>按地理位置分片<br>这种方案，非常适合与地理位置密切相关的业务，例如打车、外卖服务就非常适合这种方案。<br>北京、河北地区的用户点餐，请求只会打到北京机房，而上海、浙江地区的用户，请求则只会打到上海机房。这样的分片规则，也能避免数据冲突。</p>
+</li>
+</ol>
+<p><strong>让同一个用户的相关请求，只在一个机房内完成所有业务「闭环」，不再出现「跨机房」访问</strong></p>
+<p>现在，两个机房就可以都接收「读写」流量（做好分片的请求），底层存储保持「双向」同步，两个机房都拥有全量数据，当任意机房故障时，另一个机房就可以「接管」全部流量，实现快速切换</p>
+<p>不仅如此，因为机房部署在异地，我们还可以更细化地「优化」路由规则，让用户访问就近的机房，这样整个系统的性能也会大大提升。</p>
+<h3 id="异地多活"><a href="#异地多活" class="headerlink" title="异地多活"></a>异地多活</h3><p>服务按照「单元化」的部署方式，可以让每个机房部署在任意地区，随时扩展新机房，你只需要在最上层定义好分片规则就好了。<br>但这里还有一个小问题，随着扩展的机房越来越多，当一个机房写入数据后，需要同步的机房也越来越多，这个实现复杂度会比较高。</p>
+<p><img src="https://user-images.githubusercontent.com/58756074/138391560-2d8b5f9b-c729-455f-bea5-f224df6e7dd5.jpg" srcset="/img/loading.gif" lazyload alt="异地多活"></p>
+<p>这种方案必须设立一个「中心机房」，任意机房写入数据后，都只同步到中心机房，再由中心机房同步至其它机房，一个机房写入数据，只需要同步数据到中心机房即可，不需要再关心一共部署了多少个机房，实现复杂度大大「简化」。</p>
+<p>但与此同时，这个中心机房的「稳定性」要求会比较高。不过也还好，即使中心机房发生故障，我们也可以把任意一个机房，提升为中心机房，继续按照之前的架构提供服务。</p>
+<p><strong>可以任意扩展机房「就近」部署。任意机房发生故障，可以完成快速「切换」</strong></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/22/%E5%BC%82%E5%9C%B0%E5%A4%9A%E6%B4%BB-1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">异地多活</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/22/%E5%86%85%E6%A0%B8%E6%8E%A5%E6%94%B6%E7%BD%91%E7%BB%9C%E5%8C%85/">
+                        <span class="hidden-mobile">内核接收网络包</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://github.com/xili7209" target="_blank" rel="nofollow noopener"><span>Lee</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Roy</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
