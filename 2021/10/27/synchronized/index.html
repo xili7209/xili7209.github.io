@@ -26,9 +26,10 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/138994203-9d01a992-aa14-4427-941f-f55a0ebc81e4.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139001269-55778675-ad21-44ff-beb9-3cf8de9fd7d8.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139001275-cca9ddad-d9d6-476d-ba38-484f9536e049.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139001280-9ed3a25a-e62f-450f-a023-584679a96723.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139001284-07f4410e-c6c7-425c-82ee-d5a224d81da0.png">
 <meta property="article:published_time" content="2021-10-27T02:34:47.500Z">
-<meta property="article:modified_time" content="2021-10-27T04:47:59.641Z">
+<meta property="article:modified_time" content="2021-10-27T04:51:44.722Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Juc">
 <meta name="twitter:card" content="summary_large_image">
@@ -242,7 +243,7 @@
             <h1 style="display: none">synchronized</h1>
             
             <div class="markdown-body">
-              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Synchronized可以作用在哪里-分别通过对象锁和类锁进行举例"><a href="#Synchronized可以作用在哪里-分别通过对象锁和类锁进行举例" class="headerlink" title="Synchronized可以作用在哪里? 分别通过对象锁和类锁进行举例"></a>Synchronized可以作用在哪里? 分别通过对象锁和类锁进行举例</h3><p>Ans：对象锁分为方法锁和同步块锁，其中方法锁默认作用于当前实例也就是this，同步块代码锁则是自定义锁。类锁则是指synchronized的方法锁作用在静态方法上或者是类上，这类锁无论多少线程访问都只有一把锁。</p>
+              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Synchronized可以作用在哪里-分别通过对象锁和类锁进行举例"><a href="#Synchronized可以作用在哪里-分别通过对象锁和类锁进行举例" class="headerlink" title="Synchronized可以作用在哪里? 分别通过对象锁和类锁进行举例"></a>Synchronized可以作用在哪里? 分别通过对象锁和类锁进行举例</h3><p><strong>Ans</strong>：对象锁分为方法锁和同步块锁，其中方法锁默认作用于当前实例也就是this，同步块代码锁则是自定义锁。类锁则是指synchronized的方法锁作用在静态方法上或者是类上，这类锁无论多少线程访问都只有一把锁。</p>
 <ul>
 <li>对象锁 (默认this,指定对象)</li>
 </ul>
@@ -258,7 +259,7 @@
 <li>类锁 （指synchronize修饰静态的方法或指定锁对象为Class对象）</li>
 </ul>
 <p>静态方法都属于类所以无论是修饰静态方法还是指定对象为class，哪个线程访问它，需要的锁都只有一把</p>
-<h3 id="Synchronized本质上是通过什么保证线程安全的-分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理"><a href="#Synchronized本质上是通过什么保证线程安全的-分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理" class="headerlink" title="Synchronized本质上是通过什么保证线程安全的? 分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理"></a>Synchronized本质上是通过什么保证线程安全的? 分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理</h3><p>Ans: 通过Monitor来控制线程对对象的访问，同一时间一个对象只能和一个monitor关联而一个monitor在同一时间只能被一个线程获得，monitor保证了互斥并且锁是可重入的当线程获取该对象锁后，计数器+1，释放-1，当计时器为0时下一个线程可以从同步队列中获取锁。通过sychronized的happens-before，对同一个监视器的解锁，happens-before于对该监视器的加锁即先进入修改线程的结果对后来的线程是可见的</p>
+<h3 id="Synchronized本质上是通过什么保证线程安全的-分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理"><a href="#Synchronized本质上是通过什么保证线程安全的-分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理" class="headerlink" title="Synchronized本质上是通过什么保证线程安全的? 分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理"></a>Synchronized本质上是通过什么保证线程安全的? 分三个方面回答：加锁和释放锁的原理，可重入原理，保证可见性原理</h3><p><strong>Ans</strong>: 通过Monitor来控制线程对对象的访问，同一时间一个对象只能和一个monitor关联而一个monitor在同一时间只能被一个线程获得，monitor保证了互斥并且锁是可重入的当线程获取该对象锁后，计数器+1，释放-1，当计时器为0时下一个线程可以从同步队列中获取锁。通过sychronized的happens-before，对同一个监视器的解锁，happens-before于对该监视器的加锁即先进入修改线程的结果对后来的线程是可见的</p>
 <ul>
 <li>加锁和释放锁的原理</li>
 </ul>
@@ -272,11 +273,11 @@
 <p>monitorexit：<br>释放对于monitor的所有权，释放过程很简单，就是讲monitor的计数器减1，如果减完以后，计数器不是0，则代表刚才是重入进来的，当前线程还继续持有这把锁的所有权，如果计数器变成0，则代表当前线程不再拥有该monitor的所有权，即释放锁</p>
 <p><img src="https://user-images.githubusercontent.com/58756074/138994203-9d01a992-aa14-4427-941f-f55a0ebc81e4.png" srcset="/img/loading.gif" lazyload alt="java-thread-x-key-schronized-2"><br><strong>可重入原理：加锁次数计数器</strong><br>Synchronized先天具有重入性。每个对象拥有一个计数器，当线程获取该对象锁后，计数器就会加一，释放锁后就会将计数器减一</p>
 <p><strong>保证可见性的原理：内存模型和happens-before规则</strong><br>Synchronized的happens-before规则，即监视器锁规则：对同一个监视器的解锁，happens-before于对该监视器的加锁</p>
-<h3 id="Synchronized有什么样的缺陷-Java-Lock是怎么弥补这些缺陷的"><a href="#Synchronized有什么样的缺陷-Java-Lock是怎么弥补这些缺陷的" class="headerlink" title="Synchronized有什么样的缺陷? Java Lock是怎么弥补这些缺陷的"></a>Synchronized有什么样的缺陷? Java Lock是怎么弥补这些缺陷的</h3><p>Ans：TODO</p>
+<h3 id="Synchronized有什么样的缺陷-Java-Lock是怎么弥补这些缺陷的"><a href="#Synchronized有什么样的缺陷-Java-Lock是怎么弥补这些缺陷的" class="headerlink" title="Synchronized有什么样的缺陷? Java Lock是怎么弥补这些缺陷的"></a>Synchronized有什么样的缺陷? Java Lock是怎么弥补这些缺陷的</h3><p><strong>Ans</strong></p>
 <p>JVM中monitorenter和monitorexit字节码依赖于底层的操作系统的Mutex Lock来实现的，但是由于使用Mutex Lock需要将当前线程挂起并从用户态切换到内核态来执行，这种切换的代价是非常昂贵的；然而在现实中的大部分情况下，同步方法是运行在单线程环境(无锁竞争环境)如果每次都调用Mutex Lock那么将严重的影响程序的性能</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">N/A<br></code></pre></td></tr></table></figure>
 
-<h3 id="Synchronized和Lock的对比，和选择"><a href="#Synchronized和Lock的对比，和选择" class="headerlink" title="Synchronized和Lock的对比，和选择"></a>Synchronized和Lock的对比，和选择</h3><p>Ans：在能选择的情况下，既不要用Lock也不要用synchronized关键字，用java.util.concurrent包中的各种各样的类，如果不用该包下的类，在满足业务的情况下，可以使用synchronized关键，因为代码量少，避免出错</p>
+<h3 id="Synchronized和Lock的对比，和选择"><a href="#Synchronized和Lock的对比，和选择" class="headerlink" title="Synchronized和Lock的对比，和选择"></a>Synchronized和Lock的对比，和选择</h3><p><strong>Ans</strong>：在能选择的情况下，既不要用Lock也不要用synchronized关键字，用java.util.concurrent包中的各种各样的类，如果不用该包下的类，在满足业务的情况下，可以使用synchronized关键，因为代码量少，避免出错</p>
 <h3 id="Synchronized在使用时有何注意事项"><a href="#Synchronized在使用时有何注意事项" class="headerlink" title="Synchronized在使用时有何注意事项?"></a>Synchronized在使用时有何注意事项?</h3><ul>
 <li>锁对象不能为空，因为锁的信息都保存在对象头里</li>
 <li>避免死锁</li>
@@ -286,7 +287,7 @@
 <h3 id="Synchronized修饰的方法在抛出异常时-会释放锁吗"><a href="#Synchronized修饰的方法在抛出异常时-会释放锁吗" class="headerlink" title="Synchronized修饰的方法在抛出异常时,会释放锁吗"></a>Synchronized修饰的方法在抛出异常时,会释放锁吗</h3><p>Ans：synchronized修饰的方法，无论方法正常执行完毕还是抛出异常，都会释放锁</p>
 <h3 id="多个线程等待同一个synchronized锁的时候，JVM如何选择下一个获取锁的线程"><a href="#多个线程等待同一个synchronized锁的时候，JVM如何选择下一个获取锁的线程" class="headerlink" title="多个线程等待同一个synchronized锁的时候，JVM如何选择下一个获取锁的线程"></a>多个线程等待同一个synchronized锁的时候，JVM如何选择下一个获取锁的线程</h3><p>多线程竞争一个锁时，其余未得到锁的线程只能不停的尝试获得锁，而不能中断。高并发的情况下会导致性能下降。</p>
 <h3 id="Synchronized使得同时只有一个线程可以执行，性能比较差，有什么提升的方法"><a href="#Synchronized使得同时只有一个线程可以执行，性能比较差，有什么提升的方法" class="headerlink" title="Synchronized使得同时只有一个线程可以执行，性能比较差，有什么提升的方法"></a>Synchronized使得同时只有一个线程可以执行，性能比较差，有什么提升的方法</h3><h3 id="我想更加灵活地控制锁的释放和获取-现在释放锁和获取锁的时机都被规定死了-，怎么办"><a href="#我想更加灵活地控制锁的释放和获取-现在释放锁和获取锁的时机都被规定死了-，怎么办" class="headerlink" title="我想更加灵活地控制锁的释放和获取(现在释放锁和获取锁的时机都被规定死了)，怎么办"></a>我想更加灵活地控制锁的释放和获取(现在释放锁和获取锁的时机都被规定死了)，怎么办</h3><p>Synchronized只有锁只与一个条件(是否获取锁)相关联，不灵活，后来Condition与Lock的结合解决了这个问题。</p>
-<h3 id="什么是锁的升级和降级-什么是JVM里的偏向锁、轻量级锁、重量级锁"><a href="#什么是锁的升级和降级-什么是JVM里的偏向锁、轻量级锁、重量级锁" class="headerlink" title="什么是锁的升级和降级? 什么是JVM里的偏向锁、轻量级锁、重量级锁"></a>什么是锁的升级和降级? 什么是JVM里的偏向锁、轻量级锁、重量级锁</h3><p>Ans：升级也就是在出现竞争时轻量级锁已经无法满足得膨胀至重量锁，降级是在同步块内的数据没有逃逸风险只会被当前线程使用，不需要同步从而进行锁的消除</p>
+<h3 id="什么是锁的升级和降级-什么是JVM里的偏向锁、轻量级锁、重量级锁"><a href="#什么是锁的升级和降级-什么是JVM里的偏向锁、轻量级锁、重量级锁" class="headerlink" title="什么是锁的升级和降级? 什么是JVM里的偏向锁、轻量级锁、重量级锁"></a>什么是锁的升级和降级? 什么是JVM里的偏向锁、轻量级锁、重量级锁</h3><p><strong>Ans</strong>：升级也就是在出现竞争时轻量级锁已经无法满足得膨胀至重量锁，降级是在同步块内的数据没有逃逸风险只会被当前线程使用，不需要同步从而进行锁的消除</p>
 <p>jdk 1.6引入大量实现优化：</p>
 <ul>
 <li>**锁粗化(Lock Coarsening)**：（多次上锁变为一次大范围锁）也就是减少不必要的紧连在一起的unlock，lock操作，将多个连续的锁扩展成一个范围更大的锁</li>
@@ -299,8 +300,8 @@
 <p>加锁：JVM在thread stack中创建一个Lock Record存储object的Mark world的拷贝，JVM使用CAS操作将标记字段Mark Word拷贝到锁记录中，并且将Mark Word更新为指向Lock Record的指针。如果更新成功了，那么这个线程就有用了该对象的锁，并且对象Mark Word的锁标志位更新为(Mark Word中最后的2bit)00，即表示此对象处于轻量级锁定状态。如果更新操作<strong>失败</strong>JVM会去检查Mark Word是否存在指向当前线程的栈帧的指针，如果有，说明该锁已经被获取，可以直接调用。如果没有，则说明该锁被其他线程抢占了，如果有两条以上的线程竞争同一个锁，那轻量级锁就不再有效，直接膨胀位重量级锁，没有获得锁的线程会被阻塞。此时，锁的标志位为10.Mark Word中存储的时指向重量级锁的指针</p>
 <p>解锁：会使用原子的CAS操作将Displaced Mark Word（hcode，GC age，01）替换回到对象头中，如果成功，则表示没有发生竞争关系。如果失败，表示当前锁存在竞争关系。锁就会膨胀成重量级锁:<br><img src="https://user-images.githubusercontent.com/58756074/139001275-cca9ddad-d9d6-476d-ba38-484f9536e049.png" srcset="/img/loading.gif" lazyload alt="轻量级锁及膨胀流程"></p>
 <ul>
-<li>**偏向锁(Biased Locking)**：是为了在无锁竞争的情况下避免在锁获取过程中执行不必要的CAS原子指令，因为CAS原子指令虽然相对于重量级锁来说开销比较小但还是存在非常可观的本地延迟<br>当一个线程访问同步快并获取锁时，会在对象头和栈帧中的锁记录里存储锁偏向的线程ID，以后该线程在进入和退出同步块时不需要进行CAS操作来加锁和解锁。只需要简单地测试一下对象头的Mark Word里是否存储着指向当前线程的偏向锁。如果成功，表示线程已经获取到了锁<br>！<a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/58756074/139001280-9ed3a25a-e62f-450f-a023-584679a96723.png">偏向锁及轻量级锁</a><br>撤销：偏向锁使用了一种等待竞争出现才会释放锁的机制。所以当其他线程尝试获取偏向锁时，持有偏向锁的线程才会释放锁。但是偏向锁的撤销需要等到全局安全点(就是当前线程没有正在执行的字节码)。它会首先暂停拥有偏向锁的线程，让你后检查持有偏向锁的线程是否活着。如果线程不处于活动状态，直接将对象头设置为无锁状态。如果线程活着，JVM会遍历栈帧中的锁记录，栈帧中的锁记录和对象头要么偏向于其他线程，要么恢复到无锁状态或者标记对象不适合作为偏向锁。<br><img src="https://user-images.githubusercontent.com/58756074/139001284-07f4410e-c6c7-425c-82ee-d5a224d81da0.png" srcset="/img/loading.gif" lazyload alt="偏向锁获得和撤销"></li>
-<li>**适应性自旋(Adaptive Spinning)**：当线程在获取轻量级锁的过程中执行CAS操作失败时，在进入与monitor相关联的操作系统重量级锁(mutex semaphore)前会进入忙等待(Spinning)然<br>后再次尝试，当尝试一定的次数后如果仍然没有成功则调用与该monitor关联的semaphore(即互斥锁)进入到阻塞状态</li>
+<li><strong>偏向锁(Biased Locking)</strong>:是为了在无锁竞争的情况下避免在锁获取过程中执行不必要的CAS原子指令，因为CAS原子指令虽然相对于重量级锁来说开销比较小但还是存在非常可观的本地延迟<br>当一个线程访问同步快并获取锁时，会在对象头和栈帧中的锁记录里存储锁偏向的线程ID，以后该线程在进入和退出同步块时不需要进行CAS操作来加锁和解锁。只需要简单地测试一下对象头的Mark Word里是否存储着指向当前线程的偏向锁。如果成功，表示线程已经获取到了锁<br><img src="https://user-images.githubusercontent.com/58756074/139001280-9ed3a25a-e62f-450f-a023-584679a96723.png" srcset="/img/loading.gif" lazyload alt="偏向锁及轻量级锁"><br>撤销：偏向锁使用了一种等待竞争出现才会释放锁的机制。所以当其他线程尝试获取偏向锁时，持有偏向锁的线程才会释放锁。但是偏向锁的撤销需要等到全局安全点(就是当前线程没有正在执行的字节码)。它会首先暂停拥有偏向锁的线程，让你后检查持有偏向锁的线程是否活着。如果线程不处于活动状态，直接将对象头设置为无锁状态。如果线程活着，JVM会遍历栈帧中的锁记录，栈帧中的锁记录和对象头要么偏向于其他线程，要么恢复到无锁状态或者标记对象不适合作为偏向锁。<br><img src="https://user-images.githubusercontent.com/58756074/139001284-07f4410e-c6c7-425c-82ee-d5a224d81da0.png" srcset="/img/loading.gif" lazyload alt="偏向锁获得和撤销"></li>
+<li><strong>适应性自旋(Adaptive Spinning)</strong>:当线程在获取轻量级锁的过程中执行CAS操作失败时，在进入与monitor相关联的操作系统重量级锁(mutex semaphore)前会进入忙等待(Spinning)然<br>后再次尝试，当尝试一定的次数后如果仍然没有成功则调用与该monitor关联的semaphore(即互斥锁)进入到阻塞状态</li>
 </ul>
 <p><strong>锁膨胀方向： 无锁 → 偏向锁 → 轻量级锁 → 重量级锁 (此过程是不可逆的)</strong></p>
 <ul>
