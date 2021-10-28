@@ -16,17 +16,17 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <meta name="description" content="Quick StartTBA1N&#x2F;A  More info: Writing TBA1N&#x2F;A  More info: Server TBA1N&#x2F;A  More info: Generating TBA1N&#x2F;A">
+  <meta name="description" content="Quick Start所有的final修饰的字段都是编译期常量吗Ans:不是所有的final修饰的字段都是编译期常量，只是k的值在被初始化后无法被更改 12345678910111213public class Test &amp;#123;    &#x2F;&#x2F;编译期常量    final int i &#x3D; 1;    final static int J &#x3D; 1;    final int[] a &#x3D; &amp;#123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="final">
 <meta property="og:url" content="http://example.com/2021/10/28/final/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Quick StartTBA1N&#x2F;A  More info: Writing TBA1N&#x2F;A  More info: Server TBA1N&#x2F;A  More info: Generating TBA1N&#x2F;A">
+<meta property="og:description" content="Quick Start所有的final修饰的字段都是编译期常量吗Ans:不是所有的final修饰的字段都是编译期常量，只是k的值在被初始化后无法被更改 12345678910111213public class Test &amp;#123;    &#x2F;&#x2F;编译期常量    final int i &#x3D; 1;    final static int J &#x3D; 1;    final int[] a &#x3D; &amp;#123">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-28T03:38:59.011Z">
-<meta property="article:modified_time" content="2021-10-28T03:38:59.011Z">
+<meta property="article:modified_time" content="2021-10-28T04:28:19.102Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Unknown">
+<meta property="article:tag" content="Juc">
 <meta name="twitter:card" content="summary_large_image">
   
   <title>final - Hexo</title>
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      88 字
+      1.9k 字
     </span>
   
 
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      6 分钟
     </span>
   
 
@@ -237,20 +237,25 @@
             <h1 style="display: none">final</h1>
             
             <div class="markdown-body">
-              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="TBA"><a href="#TBA" class="headerlink" title="TBA"></a>TBA</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">N/A<br></code></pre></td></tr></table></figure>
+              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="所有的final修饰的字段都是编译期常量吗"><a href="#所有的final修饰的字段都是编译期常量吗" class="headerlink" title="所有的final修饰的字段都是编译期常量吗"></a>所有的final修饰的字段都是编译期常量吗</h3><p><strong>Ans</strong>:不是所有的final修饰的字段都是编译期常量，只是k的值在被初始化后无法被更改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;<br>    <span class="hljs-comment">//编译期常量</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> J = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[] a = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>&#125;;<br>    <span class="hljs-comment">//非编译期常量</span><br>    Random r = <span class="hljs-keyword">new</span> Random();<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> k = r.nextInt();<span class="hljs-comment">//k的值由随机数对象决定</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="TBA-1"><a href="#TBA-1" class="headerlink" title="TBA"></a>TBA</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">N/A<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="TBA-2"><a href="#TBA-2" class="headerlink" title="TBA"></a>TBA</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">N/A<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="TBA-3"><a href="#TBA-3" class="headerlink" title="TBA"></a>TBA</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">N/A<br></code></pre></td></tr></table></figure>
-
-
-
-
+<p>题外话：final一般只需在调用前赋值就行（一般在constructor中赋值），不过如果static final则需一开始赋值</p>
+<h3 id="如何理解private所修饰的方法是隐式的final"><a href="#如何理解private所修饰的方法是隐式的final" class="headerlink" title="如何理解private所修饰的方法是隐式的final"></a>如何理解private所修饰的方法是隐式的final</h3><p><strong>Ans</strong>:private方法无法被继承，无覆盖这一说<br>类中所有private方法都隐式地指定为final的，由于无法取用private方法，所以也就不能覆盖它。可以对private方法增添final关键字，但这样做并没有什么好处</p>
+<h3 id="说说final类型的类如何拓展-比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString-的方法，应该如何做"><a href="#说说final类型的类如何拓展-比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString-的方法，应该如何做" class="headerlink" title="说说final类型的类如何拓展? 比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString()的方法，应该如何做"></a>说说final类型的类如何拓展? 比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString()的方法，应该如何做</h3><p><strong>Ans</strong>:写个新类复用final类方法，再新增方法</p>
+<h3 id="final方法可以被重载吗-可以"><a href="#final方法可以被重载吗-可以" class="headerlink" title="final方法可以被重载吗? 可以"></a>final方法可以被重载吗? 可以</h3><p><strong>Ans</strong>:final方法可重载，支持多态</p>
+<h3 id="父类的final方法能不能够被子类重写-不可以"><a href="#父类的final方法能不能够被子类重写-不可以" class="headerlink" title="父类的final方法能不能够被子类重写? 不可以"></a>父类的final方法能不能够被子类重写? 不可以</h3><p><strong>Ans</strong>:final方法是无法被覆盖的</p>
+<h3 id="说说final域重排序规则"><a href="#说说final域重排序规则" class="headerlink" title="说说final域重排序规则"></a>说说final域重排序规则</h3><p><strong>基本类型</strong>：<br>写final域的重排序规则禁止对final域的写重排序到构造函数之外，这个规则的实现主要包含了两个方面：</p>
+<ul>
+<li>JMM禁止编译器把final域的写重排序到构造函数之外</li>
+<li>编译器会在final域写之后，构造函数return之前，插入一个storestore屏障。这个屏障可以禁止处理器把final域的写重排序到构造函数之外<br>写final域的重排序规则可以确保：在对象引用为任意线程可见之前，对象的final域已经被正确初始化过了，而普通域就不具有这个保障。</li>
+</ul>
+<p>读final域重排序规则为：在一个线程中，初次读对象引用和初次读该对象包含的final域，JMM会禁止这两个操作的重排序。(注意，这个规则仅仅是针对处理器)，处理器会在读final域操作的前面插入一个LoadLoad屏障。实际上，读对象的引用和读该对象的final域存在间接依赖性，一般处理器不会重排序这两个操作。但是有一些处理器会重排序，因此，这条禁止重排序规则就是针对这些处理器而设定的。</p>
+<p>读对象的普通域被重排序到了读对象引用的前面就会出现线程B还未读到对象引用就在读取该对象的普通域变量，这显然是错误的操作。而final域的读操作就“限定”了在读final域变量前已经读到了该对象的引用，从而就可以避免这种情况。<br>人话来说不做final限定可能导致线程在读对象引用前就读普通field但final可以保证这种重排序不被发生</p>
+<p><strong>引用类型</strong>：<br>写规则：除不得重排到构造函数之外，禁止在构造函数对一个final修饰的对象的成员域的写入与随后将这个被构造的对象的引用赋值给引用变量 重排序<br>对final修饰对象的成员写入不能和该对象的引用赋值重排序</p>
+<h3 id="说说final的原理"><a href="#说说final的原理" class="headerlink" title="说说final的原理"></a>说说final的原理</h3><p>写final域会要求编译器在final域写之后，构造函数返回前插入一个StoreStore屏障。读final域的重排序规则会要求编译器在读final域的操作前插入一个LoadLoad屏障</p>
+<h3 id="使用-final-的限制条件和局限性"><a href="#使用-final-的限制条件和局限性" class="headerlink" title="使用 final 的限制条件和局限性"></a>使用 final 的限制条件和局限性</h3><p><strong>Ans</strong>:当声明一个 final 成员时，必须在构造函数退出前设置它的值。将指向对象的成员声明为 final 只能将该引用设为不可变的，而非所指的对象。(list)<br>如果一个对象将会在多个线程中访问并且你并没有将其成员声明为 final，则必须提供其他方式保证线程安全<br>“ 其他方式 “ 可以包括声明成员为 volatile，使用 synchronized 或者显式 Lock 控制所有该成员的访问</p>
+<h3 id="类型自动转换问题"><a href="#类型自动转换问题" class="headerlink" title="类型自动转换问题"></a>类型自动转换问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">byte</span> b1=<span class="hljs-number">1</span>;<br><span class="hljs-keyword">byte</span> b2=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">byte</span> b3=b1+b2;<span class="hljs-comment">//当程序执行到这一行的时候会出错，因为b1、b2可以自动转换成int类型的变量，运算时java虚拟机对它进行了转换，结果导致把一个int赋值给byte-----出错</span><br><br><span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span> b1=<span class="hljs-number">1</span>;<br><span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span> b2=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">byte</span> b3=b1+b2;<span class="hljs-comment">//不会出错，相信你看了上面的解释就知道原因了。</span><br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -259,7 +264,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Unknwon/">Unknwon</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
                 
@@ -267,7 +272,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Unknown/">Unknown</a>
+                      <a class="hover-with-bg" href="/tags/Juc/">Juc</a>
                     
                   </div>
                 
