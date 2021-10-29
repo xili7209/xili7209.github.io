@@ -190,6 +190,163 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/10/29/Java-Thread/" target="_self">
+          Java Thread
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/29/Java-Thread/" target="_self">
+          
+          
+            
+          
+          Quick Start线程有哪几种状态? 分别说明从一种状态到另一种状态转变有哪些方式?1234567891011121314151617public enum State &#123;    NEW, //创建后尚未启动 thread.init    RUNNABLE, //可能正在运行，也可能正在等待 CPU 时间片包含Running和Ready thread.start()    BLOCK
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-29 12:29" pubdate>
+              2021-10-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Juc/">Juc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/29/Java-Concurrency/" target="_self">
+          Java Concurrency
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/29/Java-Concurrency/" target="_self">
+          
+          
+            
+          
+          Quick Start多线程的出现是要解决什么问题的比进程颗粒度更小的执行单位，进程负责提供资源，同一进程下的线程可以共享资源无需像进程切换那样繁重
+More info: Writing
+线程不安全是指什么? 举例说明1234567891011121314151617181920212223242526272829public class ThreadUnsafeExample &#123;   
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-29 11:52" pubdate>
+              2021-10-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Juc/">Juc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/29/Reentrantlock/" target="_self">
+          Reentrantlock
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/29/Reentrantlock/" target="_self">
+          
+          
+            
+          
+          Quick Start什么是可重入，什么是可重入锁? 它用来解决什么问题1N/A
+线程可以重复获取同一把锁More info: Writing
+ReentrantLock的核心是AQS，那么它怎么来实现的，继承吗? 说说其类内部结构关系1N/A
+
+NonfairSync和FairSync继承Sync类
+ReentrantLock是如何实现公平锁的12345678910111213141516171
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-29 10:31" pubdate>
+              2021-10-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Juc/">Juc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/10/28/AQS/" target="_self">
           AQS
         </a>
@@ -551,175 +708,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Network/">Network</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/21/%E4%B8%AD%E6%96%AD/" target="_self">
-          中断
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/21/%E4%B8%AD%E6%96%AD/" target="_self">
-          
-          
-            
-          
-          Quick Start内核接收网络包的起点就是中断（硬中断和软中断）
-整个操作系统就是一个中断驱动的死循环123while(true) &#123;    doNothing();&#125;
-
-其他所有事情都是由操作系统提前注册的中断机制和其对应的中断处理函数完成，我们点击一下鼠标，敲击一下键盘，执行一个程序，都是用中断的方式来通知操作系统帮我们处理这些事件，当没有任何需要操作系统处理的事件时，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-21 10:13" pubdate>
-              2021-10-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/linux/">linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/interrupt/">interrupt</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/20/Markdown/" target="_self">
-          Markdown
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/20/Markdown/" target="_self">
-          
-          
-            
-          
-          Quick Start标题123456# 这是一级标题## 这是二级标题### 这是三级标题#### 这是四级标题##### 这是五级标题###### 这是六级标题
-
-
-
-字体1234**这是加粗的文字***这是倾斜的文字*`***这是斜体加粗的文字***~~这是加删除线的文字~~
-
-
-
-引用123&gt;这是引用的内容&gt;&gt;这是引用的内容&gt;&gt;&gt;&gt;&gt;&gt;
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-20 22:00" pubdate>
-              2021-10-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/blog/">blog</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Markdown/">Markdown</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/20/Hosts-File/" target="_self">
-          Hosts File
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/20/Hosts-File/" target="_self">
-          
-          
-            
-          
-          Hosts file是将域名和IP建立mapping，相当于DNS缓存，浏览器会先优先在hosts里查找IP，如果没有则系统再将网址提交DNS域名解析服务器进行解析
-Quick StartTBA12$ cd /etc$ vim hosts
-
-
-
-
-
-
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-20 21:56" pubdate>
-              2021-10-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/linux/">linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hosts/">hosts</a>
             
           </div>
         
