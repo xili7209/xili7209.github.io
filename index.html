@@ -190,6 +190,57 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/10/31/Lock-Support/" target="_self">
+          Lock Support
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/31/Lock-Support/" target="_self">
+          
+          
+            
+          
+          Quick Start为什么LockSupport也是核心基础类? AQS框架借助于两个类：Unsafe(提供CAS操作)和LockSupport(提供park/unpark操作)LockSupport底层用的也是unsafe,且constructor为private无法实例化
+123456789//Unsafepublic native void park(boolean isAbsolute,
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-31 18:13" pubdate>
+              2021-10-31
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Juc/">Juc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/10/29/Java-Thread/" target="_self">
           Java Thread
         </a>
@@ -308,7 +359,7 @@ More info: Writing
 ReentrantLock的核心是AQS，那么它怎么来实现的，继承吗? 说说其类内部结构关系1N/A
 
 NonfairSync和FairSync继承Sync类
-ReentrantLock是如何实现公平锁的12345678910111213141516171
+123456789101112131415161718192021222324252627282
         </a>
       </p>
 
@@ -656,58 +707,6 @@ ReentrantLock是如何实现公平锁的12345678910111213141516171
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/22/%E5%86%85%E6%A0%B8%E6%8E%A5%E6%94%B6%E7%BD%91%E7%BB%9C%E5%8C%85/" target="_self">
-          内核接收网络包
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/22/%E5%86%85%E6%A0%B8%E6%8E%A5%E6%94%B6%E7%BD%91%E7%BB%9C%E5%8C%85/" target="_self">
-          
-          
-            
-          
-          Quick Start到达网卡网卡接收网络包并存放在网卡内的缓冲区，实质上就是把网线中的高低电平，转换到网卡上的一个缓冲区中存储着
-再由网卡缓冲区加载到内存缓冲区通过DMA，这个过程的前提是，网卡驱动需要在内存中申请一个缓冲区叫 sk_buffer，然后把这个 sk_buffer 的地址告诉网卡，这样 DMA 才知道等网卡的缓冲区有数据到来时，把它拷贝到内存的什么位置上。
-网卡发出中断（硬中断）网
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-22 10:30" pubdate>
-              2021-10-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/linux/">linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Network/">Network</a>
             
           </div>
         
