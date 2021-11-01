@@ -16,21 +16,22 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <meta name="description" content="Quick Start什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合我">
+  <meta name="description" content="Quick Start 什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AQS">
 <meta property="og:url" content="http://example.com/2021/10/28/AQS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Quick Start什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合我">
+<meta property="og:description" content="Quick Start 什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139618563-b4cc63a9-3e6b-4d7f-adff-d47c1d3deb02.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139201031-f1fe0071-1f35-439d-ab3c-7db2fc142c58.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139203709-a4ac3160-9dfd-415f-b381-6ee961d00280.png">
 <meta property="article:published_time" content="2021-10-28T06:14:02.434Z">
-<meta property="article:modified_time" content="2021-10-29T15:49:45.573Z">
+<meta property="article:modified_time" content="2021-11-01T03:44:04.103Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Juc">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/58756074/139201031-f1fe0071-1f35-439d-ab3c-7db2fc142c58.png">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/58756074/139618563-b4cc63a9-3e6b-4d7f-adff-d47c1d3deb02.png">
   
   <title>AQS - Hexo</title>
 
@@ -240,7 +241,8 @@
             <h1 style="display: none">AQS</h1>
             
             <div class="markdown-body">
-              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="什么是AQS-为什么它是核心"><a href="#什么是AQS-为什么它是核心" class="headerlink" title="什么是AQS? 为什么它是核心"></a>什么是AQS? 为什么它是核心</h3><p><strong>Ans</strong>:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合我们自己需求的同步器。</p>
+              <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p><img src="https://user-images.githubusercontent.com/58756074/139618563-b4cc63a9-3e6b-4d7f-adff-d47c1d3deb02.png" srcset="/img/loading.gif" lazyload alt="AQS总揽"></p>
+<h3 id="什么是AQS-为什么它是核心"><a href="#什么是AQS-为什么它是核心" class="headerlink" title="什么是AQS? 为什么它是核心"></a>什么是AQS? 为什么它是核心</h3><p><strong>Ans</strong>:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合我们自己需求的同步器。</p>
 <h3 id="AQS的核心思想是什么-它是怎么实现的-底层数据结构"><a href="#AQS的核心思想是什么-它是怎么实现的-底层数据结构" class="headerlink" title="AQS的核心思想是什么? 它是怎么实现的? 底层数据结构"></a>AQS的核心思想是什么? 它是怎么实现的? 底层数据结构</h3><p><strong>Ans</strong>:AQS核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制AQS是用CLH（虚拟的双向队列）队列锁实现的，即将暂时获取不到锁的线程加入到队列中</p>
 <p>AQS使用一个int成员变量来表示同步状态，通过内置的FIFO队列来完成获取资源线程的排队工作。AQS使用CAS对该同步状态进行原子操作实现对其值的修改。<br>AbstractQueuedSynchronizer类有两个内部类，分别为Node类与ConditionObject类</p>
 <p>Node：每个线程被阻塞的线程都会被封装成一个Node结点，放入队列。每个节点包含了一个Thread类型的引用，并且每个节点都存在一个状态<br>状态：</p>

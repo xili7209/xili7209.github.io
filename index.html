@@ -190,6 +190,107 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/11/01/JMM/" target="_self">
+          JMM
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/01/JMM/" target="_self">
+          
+          
+            
+          
+          Quick StartJMM从堆栈说起局部变量都在stack上，线程只能访问自己的堆栈基本类型的所有局部变量(boolean，byte，short，char，int，long，float，double)完全存储在线程堆栈中，因此对其他线程不可见。 一个线程可以将一个基本类型变量的副本传递给另一个线程，但它不能共享原始局部变量本身
+堆包含了在Java应用程序中创建的所有对象，无论创建该对象的线程是什
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-01 16:41" pubdate>
+              2021-11-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JVM/">JVM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/01/JUC%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B/" target="_self">
+          JUC经典案例
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/01/JUC%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B/" target="_self">
+          
+          
+            
+          
+          Quick Start生产者消费者模型12345678910111213141516emptyBuffer （N）fullBuffer (0)mutex (lock) (1)producer:    p(emptyBuffer)  //-1    P(mutex)    //-1    write    v(mutex)  //+1    V(fullBuffer)  //+1consumer: 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-01 13:01" pubdate>
+              2021-11-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java/">Java</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Juc/">Juc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/10/31/Lock-Support/" target="_self">
           Lock Support
         </a>
@@ -354,12 +455,11 @@ More info: Writing
           
             
           
-          Quick Start什么是可重入，什么是可重入锁? 它用来解决什么问题1N/A
-线程可以重复获取同一把锁More info: Writing
-ReentrantLock的核心是AQS，那么它怎么来实现的，继承吗? 说说其类内部结构关系1N/A
-
+          Quick Start
+什么是可重入，什么是可重入锁? 它用来解决什么问题Ans：可以多次重复进入，可重入锁及同一线程在取得锁资源的期间可以重复获取同一把锁
+ReentrantLock的核心是AQS，那么它怎么来实现的，继承吗? 说说其类内部结构关系
 NonfairSync和FairSync继承Sync类
-123456789101112131415161718192021222324252627282
+1234567891011121314151617181920212223242526272
         </a>
       </p>
 
@@ -409,7 +509,8 @@ NonfairSync和FairSync继承Sync类
           
             
           
-          Quick Start什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合我
+          Quick Start
+什么是AQS? 为什么它是核心Ans:AQS是一个用来构建锁和同步器的框架，使用AQS能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的ReentrantLock，Semaphore，其他的诸如ReentrantReadWriteLock，SynchronousQueue，FutureTask等等皆是基于AQS的。当然，我们自己也能利用AQS非常轻松容易地构造出符合
         </a>
       </p>
 
@@ -593,120 +694,6 @@ NonfairSync和FairSync继承Sync类
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Juc/">Juc</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/27/synchronized/" target="_self">
-          synchronized
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/27/synchronized/" target="_self">
-          
-          
-            
-          
-          Quick StartSynchronized可以作用在哪里? 分别通过对象锁和类锁进行举例Ans：对象锁分为方法锁和同步块锁，其中方法锁默认作用于当前实例也就是this，同步块代码锁则是自定义锁。类锁则是指synchronized的方法锁作用在静态方法上或者是类上，这类锁无论多少线程访问都只有一把锁。
-
-对象锁 (默认this,指定对象)
-
-包括方法锁(默认锁对象为this,当前实例对象)和同步
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-27 10:34" pubdate>
-              2021-10-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Juc/">Juc</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/22/%E5%BC%82%E5%9C%B0%E5%A4%9A%E6%B4%BB/" target="_self">
-          异地多活
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/22/%E5%BC%82%E5%9C%B0%E5%A4%9A%E6%B4%BB/" target="_self">
-          
-          
-            
-          
-          Quick Start系统可用性好的软件架构：
-
-高性能 （延迟低）
-高可用  
-易拓展  (迭代新功能成本低)
-
-高可用：
-
-平均故障间隔 MTBF（Mean Time Between Failure）：表示两次故障的间隔时间，也就是系统「正常运行」的平均时间，这个时间越长，说明系统稳定性越高
-
-故障恢复时间 MTTR（Mean Time To Repair）：表示系统发生故障后「恢复的时间」，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-22 11:09" pubdate>
-              2021-10-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
             
           </div>
         

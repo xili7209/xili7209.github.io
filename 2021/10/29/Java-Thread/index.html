@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139376152-e613f09b-8675-439d-b1f2-4d2e7ce9e674.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/58756074/139382615-392d4fb0-1602-4173-a1da-4dd2904dd43c.png">
 <meta property="article:published_time" content="2021-10-29T04:29:58.239Z">
-<meta property="article:modified_time" content="2021-10-29T07:16:54.542Z">
+<meta property="article:modified_time" content="2021-11-01T04:42:07.484Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Juc">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8k 字
+      8.3k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25 分钟
+      26 分钟
     </span>
   
 
@@ -264,7 +264,16 @@
 <li>实现 Runnable 接口<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    MyRunnable instance = <span class="hljs-keyword">new</span> MyRunnable();<br>    Thread thread = <span class="hljs-keyword">new</span> Thread(instance);<span class="hljs-comment">//lambda也行</span><br>    thread.start();<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li>实现 Runnable 接口<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCallable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Callable</span>&lt;<span class="hljs-title">Integer</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">call</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> ExecutionException, InterruptedException </span>&#123;<br>    MyCallable mc = <span class="hljs-keyword">new</span> MyCallable();<br>    FutureTask&lt;Integer&gt; ft = <span class="hljs-keyword">new</span> FutureTask&lt;&gt;(mc);<br>    Thread thread = <span class="hljs-keyword">new</span> Thread(ft);<br>    thread.start();<br>    System.out.println(ft.get());<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li>继承 Thread 类<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    MyThread mt = <span class="hljs-keyword">new</span> MyThread();<br>    mt.start();<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><em>实现接口 VS 继承 Thread</em>*<br>实现接口更好</li>
+<li><em>start vs thread</em>*:用start()来启动线程，真正实现了多线程，就算出现start()方法也是继续执行下面的代码而不需等待run()体代码执行完</li>
+</ul>
+<ul>
+<li><p>通过调用Thread类的 start()方法来启动一个线程，这时此线程处于就绪（可运行）状态，并没有运行，一旦得到cpu时间片，就开始执行run()方法，这里方法 run()称为线程体，它包含了要执行的这个线程的内容，Run方法运行结束，此线程随即终止</p>
+</li>
+<li><p>run()方法只是类的一个普通方法而已，如果直接调用Run方法，程序中依然只有主线程这一个线程，其程序执行路径还是只有一条，还是要顺序执行，还是要等待run方法体执行完毕后才可继续执行下面的代码，没有达到多线程的目的</p>
+</li>
+</ul>
+<p><strong>实现接口 VS 继承 Thread</strong><br>实现接口更好</p>
+<ul>
 <li>Java 不支持多重继承，因此继承了 Thread 类就无法继承其它类，但是可以实现多个接口</li>
 <li>类可能只要求可执行就行，继承整个 Thread 类开销过大</li>
 </ul>
